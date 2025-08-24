@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- CONFIGURATION ---
   const config = {
     // The API server's address is now managed in one place.
-    API_BASE_URL: "http://as1.nerdysid.in:25571",
+    API_BASE_URL: "",
   };
 
   // --- TAB NAVIGATION LOGIC ---
