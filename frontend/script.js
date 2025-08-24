@@ -1,5 +1,5 @@
 const config = {
-  apiBaseUrl: "http://as1.nerdysid.in:25660",
+  apiBaseUrl: "",
   upiVPA: "9811318629@superyes",
   payeeName: "Pixel Pulse",
   fundraisingGoal: 5000,

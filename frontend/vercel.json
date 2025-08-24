@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/stats",
+      "destination": "http://as1.nerdysid.in:25660/api/stats"
+    }
+  ]
+}
