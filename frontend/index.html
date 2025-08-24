@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fundraising Campaign</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1 id="campaignTitle"></h1>
+        <p id="campaignDescription"></p>
+      </header>
+
+      <section class="metrics-section">
+        <div class="metric-card">
+          <h3>Time Left</h3>
+          <div id="countdown" class="metric-value"></div>
+        </div>
+        <div class="metric-card">
+          <h3>Total Raised</h3>
+          <div id="totalRaised" class="metric-value">₹0</div>
+        </div>
+        <div class="metric-card">
+          <h3>Donors</h3>
+          <div id="donorCount" class="metric-value">0</div>
+        </div>
+      </section>
+
+      <section class="progress-section">
+        <h2>Progress Towards Goal of <span id="goalAmount"></span></h2>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <p id="progressText">Raised: ₹0 / ₹0</p>
+      </section>
+
+      <main class="main-content">
+        <div class="form-and-qr-column">
+          <section class="form-section card">
+            <h2>Make a Contribution</h2>
+            <form id="paymentForm">
+              <input type="text" id="name" placeholder="Your Name" required />
+              <input
+                type="number"
+                id="amount"
+                placeholder="Amount (in INR)"
+                min="1"
+                step="0.01"
+                required
+              />
+              <div class="suggestion-buttons">
+                <button type="button" class="suggestion-btn" data-amount="250">
+                  ₹250
+                </button>
+                <button type="button" class="suggestion-btn" data-amount="500">
+                  ₹500
+                </button>
+                <button type="button" class="suggestion-btn" data-amount="1000">
+                  ₹1000
+                </button>
+              </div>
+              <input
+                type="text"
+                id="message"
+                placeholder="A short, encouraging message"
+                required
+              />
+              <button type="submit">Generate Payment QR</button>
+            </form>
+            <div id="qrCode">
+              <div id="qrCanvas"></div>
+              <p id="qrMessage" style="display: none">
+                Scan this QR with your UPI app to pay.
+              </p>
+            </div>
+            <div id="utrSection" style="display: none">
+              <h3>Confirm Your Payment</h3>
+              <p>
+                After paying, enter the 12-digit UTR/Transaction ID from your
+                UPI app.
+              </p>
+              <input
+                type="text"
+                id="utr"
+                placeholder="Enter UTR (Transaction ID)"
+                required
+              />
+              <button onclick="acknowledgePayment()">Submit UTR</button>
+            </div>
+            <div id="acknowledgement"></div>
+          </section>
+        </div>
+
+        <div class="donations-and-leaderboard-column">
+          <section class="donations-section card">
+            <h2><i class="fa-solid fa-heart"></i> Recent Donations</h2>
+            <ul id="donationsList" class="donations-list"></ul>
+          </section>
+
+          <section class="leaderboard-section card">
+            <h2><i class="fa-solid fa-trophy"></i> Top Donors</h2>
+            <ol id="topDonorsList" class="donations-list"></ol>
+          </section>
+        </div>
+      </main>
+
+      <section class="share-section">
+        <h2>Spread the Word!</h2>
+        <p>
+          Every share brings us closer to our goal. Please support us by sharing
+          the campaign.
+        </p>
+        <div class="social-share-buttons">
+          <a
+            href="#"
+            id="share-whatsapp"
+            class="social-btn whatsapp"
+            target="_blank"
+            ><i class="fab fa-whatsapp"></i> WhatsApp</a
+          >
+        </div>
+      </section>
+
+      <footer>
+        <p>Thank you for supporting our cause!</p>
+      </footer>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
