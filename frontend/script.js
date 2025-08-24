@@ -97,7 +97,7 @@ function updateProgress(total, donorCount) {
     currency: "INR",
   });
 
-  progressText.textContent = `Raised: ${formattedTotal} / ${formattedGoal}`;
+  progressText.textContent = `Raised: ₹${formattedTotal} / ${formattedGoal}`;
   totalRaisedEl.textContent = formattedTotal;
   donorCountEl.textContent = donorCount;
 }
