@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Help Hunger - Connect & Share</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Help Hunger</h1>
+        <p>
+          Connecting those who have with those who need. Let's fight hunger
+          together.
+        </p>
+      </header>
+
+      <!-- Tab Navigation -->
+      <div class="tabs">
+        <button class="tab-link active" data-tab="getFood">
+          <i class="fa-solid fa-hand-holding-heart"></i> Get Food (For NGOs)
+        </button>
+        <button class="tab-link" data-tab="sendFood">
+          <i class="fa-solid fa-truck-fast"></i> Send Food (For Donors)
+        </button>
+      </div>
+
+      <main class="main-content">
+        <!-- Get Food Section (Tab Content) -->
+        <div id="getFood" class="tab-content active">
+          <section class="card form-card">
+            <h2>Register Your Organization</h2>
+            <p class="section-description">
+              If you are an NGO or a community in need, sign up here to be
+              listed for food donations.
+            </p>
+            <form id="getFoodForm">
+              <input
+                type="text"
+                id="ngoName"
+                placeholder="NGO / Organization Name"
+                required
+              />
+              <input
+                type="text"
+                id="contactPerson"
+                placeholder="Contact Person"
+                required
+              />
+              <input
+                type="email"
+                id="ngoEmail"
+                placeholder="Email Address"
+                required
+              />
+              <input
+                type="tel"
+                id="ngoPhone"
+                placeholder="Phone Number"
+                required
+              />
+              <textarea
+                id="ngoAddress"
+                placeholder="Full Address"
+                rows="3"
+                required
+              ></textarea>
+
+              <div class="location-section">
+                <button
+                  type="button"
+                  id="addNgoLocationBtn"
+                  class="location-btn"
+                >
+                  <i class="fa-solid fa-location-crosshairs"></i> Add My
+                  Location
+                </button>
+                <p id="ngoLocationStatus" class="location-status"></p>
+              </div>
+              <input type="hidden" id="ngoLat" />
+              <input type="hidden" id="ngoLon" />
+
+              <textarea
+                id="ngoNeeds"
+                placeholder="Briefly describe your needs (e.g., number of people, type of food required)"
+                rows="4"
+                required
+              ></textarea>
+              <button type="submit">Register to Receive Food</button>
+            </form>
+            <div
+              id="getFoodAcknowledgement"
+              class="acknowledgement"
+              style="display: none"
+            ></div>
+          </section>
+        </div>
+
+        <!-- Send Food Section (Tab Content) -->
+        <div id="sendFood" class="tab-content">
+          <section class="card">
+            <h2>Find a Nearby NGO</h2>
+            <p class="section-description">
+              Allow location access to find registered organizations near you
+              that are accepting food donations.
+            </p>
+            <div class="location-section">
+              <button type="button" id="findNgosBtn" class="location-btn">
+                <i class="fa-solid fa-magnifying-glass-location"></i> Find NGOs
+                Within 10km
+              </button>
+              <p id="donorLocationStatus" class="location-status"></p>
+            </div>
+            <div id="nearbyNgosSection">
+              <ul id="nearbyNgosList"></ul>
+            </div>
+          </section>
+
+          <section
+            class="card form-card"
+            id="donationFormSection"
+            style="margin-top: 30px; display: none"
+          >
+            <h2>Arrange a Donation</h2>
+            <p class="section-description">
+              You've selected <strong id="selectedNgoName"></strong>. Please
+              fill out this form to coordinate the donation.
+            </p>
+            <form id="sendFoodForm">
+              <input type="hidden" id="selectedNgoId" />
+              <input
+                type="text"
+                id="donorName"
+                placeholder="Your Name / Restaurant Name"
+                required
+              />
+              <input
+                type="email"
+                id="donorEmail"
+                placeholder="Your Email Address"
+                required
+              />
+              <select id="donorType" required>
+                <option value="" disabled selected>Select Donor Type</option>
+                <option value="Party Leftovers">Party Leftovers</option>
+                <option value="Charity">Charity / Individual</option>
+                <option value="Local Restaurant">Local Restaurant</option>
+                <option value="Meal Sponsor">Sponsor a Meal</option>
+              </select>
+              <textarea
+                id="foodDescription"
+                placeholder="Describe the food (e.g., Veg Biryani, Sandwiches)"
+                rows="3"
+                required
+              ></textarea>
+              <input
+                type="text"
+                id="foodQuantity"
+                placeholder="Quantity (e.g., Serves 10 people, 5 kgs)"
+                required
+              />
+              <input
+                type="tel"
+                id="donorPhone"
+                placeholder="Contact Number for Coordination"
+                required
+              />
+              <button type="submit">Notify NGO of Donation</button>
+            </form>
+            <div
+              id="sendFoodAcknowledgement"
+              class="acknowledgement"
+              style="display: none"
+            ></div>
+          </section>
+        </div>
+      </main>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

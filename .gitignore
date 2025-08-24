@@ -1,4 +1,10 @@
 api-server/node_modules
-
-.env
+backend/.env
+frontend/.env
 package-lock.json
+.env
+
+help-hunger/backend/.env
+help-hunger/frontend/.env
+node_modules
+ngos.json
