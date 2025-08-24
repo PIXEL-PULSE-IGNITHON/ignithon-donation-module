@@ -1,5 +1,5 @@
 const config = {
-  apiBaseUrl: "",
+  apiBaseUrl: "", // keep empty → requests go through Vercel proxy
   upiVPA: "9811318629@superyes",
   payeeName: "Pixel Pulse",
   fundraisingGoal: 5000,
@@ -8,6 +8,7 @@ const config = {
     "Help us build a brighter future. Every contribution, big or small, makes a significant impact. Let's reach our goal together!",
   campaignEndDate: "2025-08-31T23:59:59",
 };
+
 const campaignTitleEl = document.getElementById("campaignTitle");
 const campaignDescriptionEl = document.getElementById("campaignDescription");
 const paymentForm = document.getElementById("paymentForm");
@@ -33,9 +34,10 @@ function initializeUI() {
   setupSocialSharing();
 }
 
+// ✅ FIXED WebSocket setup
 function setupWebSocket() {
-  const wsProtocol = config.apiBaseUrl.startsWith("https") ? "wss:" : "ws:";
-  const wsUrl = `${wsProtocol}//${config.apiBaseUrl.split("//")[1]}`;
+  const wsProtocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+  const wsUrl = `${wsProtocol}//${window.location.host}/api/ws`;
   const ws = new WebSocket(wsUrl);
 
   ws.onmessage = (event) => {
@@ -49,9 +51,7 @@ function setupWebSocket() {
   };
 
   ws.onclose = () => {
-    console.log(
-      "WebSocket disconnected. Attempting to reconnect in 5 seconds..."
-    );
+    console.log("WebSocket disconnected. Reconnecting in 5s...");
     setTimeout(setupWebSocket, 5000);
   };
 
@@ -63,9 +63,9 @@ function setupWebSocket() {
 async function initialLoad() {
   try {
     const [statsRes, donationsRes, topDonorsRes] = await Promise.all([
-      fetch(`${config.apiBaseUrl}/api/stats`),
-      fetch(`${config.apiBaseUrl}/api/donations`),
-      fetch(`${config.apiBaseUrl}/api/top-donors`),
+      fetch(`/api/stats`), // ✅ directly call /api/... (Vercel rewrites handle backend)
+      fetch(`/api/donations`),
+      fetch(`/api/top-donors`),
     ]);
 
     if (!statsRes.ok || !donationsRes.ok || !topDonorsRes.ok)
@@ -189,7 +189,7 @@ async function acknowledgePayment() {
   }
 
   try {
-    const response = await fetch(`${config.apiBaseUrl}/api/donate`, {
+    const response = await fetch(`/api/donate`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, amount, message, utr }),
