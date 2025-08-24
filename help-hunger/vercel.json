@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "http://donation.api.dashutosh.tech:25660/api/$1"
+    }
+  ]
+}
