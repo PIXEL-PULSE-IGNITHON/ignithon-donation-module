@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "http://donation.api.dashutosh.tech:25660/api/$1"
+      "destination": "http://donation.api.dashutosh.tech:25571/api/$1"
     }
   ]
 }
